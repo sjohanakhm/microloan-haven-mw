@@ -1,6 +1,6 @@
-
 import { Button } from "@/components/ui/button";
 import { HandCoins } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export const Hero = () => {
   return (
@@ -21,8 +21,8 @@ export const Hero = () => {
           <Button size="lg" className="slide-up">
             Apply for a Loan
           </Button>
-          <Button size="lg" variant="outline" className="slide-up">
-            Learn More
+          <Button size="lg" variant="outline" className="slide-up" asChild>
+            <Link to="/about">Learn More</Link>
           </Button>
         </div>
       </div>
