@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Phone, Mail, MapPin } from "lucide-react";
+import { Mail } from "lucide-react";
 
 export const Contact = () => {
   return (
@@ -13,20 +13,16 @@ export const Contact = () => {
           <div>
             <h2 className="text-3xl font-bold mb-4">Get in Touch</h2>
             <p className="text-muted-foreground mb-8">
-              Have questions about our services? We're here to help you get started on your journey to financial success.
+              We are committed to serving underserved groups, including SMEs, youth, and women, who face significant barriers to securing financing in emerging economies. Contact us to learn how we can help you access the financial services you need.
             </p>
             <div className="space-y-6">
               <div className="flex items-center gap-4">
-                <Phone className="text-primary" />
-                <span>+265 1 234 5678</span>
+                <Mail className="text-primary" />
+                <span>ahmed@consolfinance.com</span>
               </div>
               <div className="flex items-center gap-4">
                 <Mail className="text-primary" />
-                <span>contact@cfl-malawi.com</span>
-              </div>
-              <div className="flex items-center gap-4">
-                <MapPin className="text-primary" />
-                <span>Lilongwe City Center, Malawi</span>
+                <span>krystal@consolfinance.com</span>
               </div>
             </div>
           </div>
