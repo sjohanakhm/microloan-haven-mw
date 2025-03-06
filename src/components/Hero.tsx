@@ -18,8 +18,8 @@ export const Hero = () => {
           CFL provides accessible microcredit solutions to empower entrepreneurs and small businesses across Malawi, helping communities thrive and grow together.
         </p>
         <div className="flex flex-wrap justify-center gap-4">
-          <Button size="lg" className="slide-up">
-            Apply for a Loan
+          <Button size="lg" className="slide-up" asChild>
+            <Link to="/loan-application">Apply for a Loan</Link>
           </Button>
           <Button size="lg" variant="outline" className="slide-up" asChild>
             <Link to="/about">Learn More</Link>
