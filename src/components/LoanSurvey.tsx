@@ -10,8 +10,13 @@ import { AdditionalComments } from "./survey/AdditionalComments";
 import { Check } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
+interface FormData {
+  [key: string]: any;
+}
+
 export const LoanSurvey = () => {
   const [step, setStep] = useState(1);
+  const [formData, setFormData] = useState<FormData>({});
   const { toast } = useToast();
   const totalSteps = 5;
 
@@ -27,12 +32,20 @@ export const LoanSurvey = () => {
     }
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
+    console.log("Survey submission data:", formData);
+    
+    // In a real application, you would send this data to your backend
+    // For now, we're just logging it and showing a success message
     toast({
       title: "Application Submitted",
-      description: "We'll review your application and get back to you soon.",
+      description: "Your application has been received. Our team will contact you soon at your provided email address.",
       duration: 5000,
     });
+  };
+
+  const updateFormData = (newData: Partial<FormData>) => {
+    setFormData(prev => ({ ...prev, ...newData }));
   };
 
   return (
@@ -67,23 +80,17 @@ export const LoanSurvey = () => {
         ))}
       </div>
 
-      {step === 1 && <PersonalInfo />}
-      {step === 2 && <LoanDetails />}
-      {step === 3 && <FinancialInfo />}
-      {step === 4 && <LoanPreferences />}
-      {step === 5 && <AdditionalComments />}
+      {step === 1 && <PersonalInfo formData={formData} updateFormData={updateFormData} />}
+      {step === 2 && <LoanDetails formData={formData} updateFormData={updateFormData} />}
+      {step === 3 && <FinancialInfo formData={formData} updateFormData={updateFormData} />}
+      {step === 4 && <LoanPreferences formData={formData} updateFormData={updateFormData} />}
+      {step === 5 && <AdditionalComments formData={formData} updateFormData={updateFormData} />}
 
       <div className="flex justify-between mt-8">
-        <Button
-          variant="outline"
-          onClick={handleBack}
-          disabled={step === 1}
-        >
+        <Button variant="outline" onClick={handleBack} disabled={step === 1}>
           Back
         </Button>
-        <Button
-          onClick={step === totalSteps ? handleSubmit : handleNext}
-        >
+        <Button onClick={step === totalSteps ? handleSubmit : handleNext}>
           {step === totalSteps ? "Submit Application" : "Next"}
         </Button>
       </div>
