@@ -33,13 +33,28 @@ export const LoanSurvey = () => {
   };
 
   const handleSubmit = async () => {
-    console.log("Survey submission data:", formData);
+    // Prepare email content
+    const recipients = ["ahmed@consolfinance.com", "krystal@consolfinance.com"];
+    const subject = "New Loan Application Submission";
+    const body = `
+      New loan application received:
+      
+      Personal Information:
+      ${Object.entries(formData)
+        .map(([key, value]) => `${key}: ${value}`)
+        .join('\n')}
+    `;
+
+    // Create mailto link with all recipients
+    const mailtoLink = `mailto:${recipients.join(',')}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     
-    // In a real application, you would send this data to your backend
-    // For now, we're just logging it and showing a success message
+    // Open default email client
+    window.location.href = mailtoLink;
+
+    // Show success message
     toast({
-      title: "Application Submitted",
-      description: "Your application has been received. Our team will contact you soon at your provided email address.",
+      title: "Application Ready to Send",
+      description: "Your email client has been opened with the application details. Please review and send the email.",
       duration: 5000,
     });
   };

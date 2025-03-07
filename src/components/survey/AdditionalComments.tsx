@@ -1,8 +1,12 @@
-
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 
-export const AdditionalComments = () => {
+interface AdditionalCommentsProps {
+  formData: any;
+  updateFormData: (newData: any) => void;
+}
+
+export const AdditionalComments = ({ formData, updateFormData }: AdditionalCommentsProps) => {
   return (
     <div className="space-y-6">
       <h2 className="text-2xl font-semibold mb-4">5. Additional Comments</h2>

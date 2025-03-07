@@ -1,8 +1,12 @@
-
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 
-export const FinancialInfo = () => {
+interface FinancialInfoProps {
+  formData: any;
+  updateFormData: (newData: any) => void;
+}
+
+export const FinancialInfo = ({ formData, updateFormData }: FinancialInfoProps) => {
   return (
     <div className="space-y-6">
       <h2 className="text-2xl font-semibold mb-4">3. Financial Information</h2>

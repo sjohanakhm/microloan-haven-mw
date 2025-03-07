@@ -1,9 +1,13 @@
-
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 
-export const PersonalInfo = () => {
+interface PersonalInfoProps {
+  formData: any;
+  updateFormData: (newData: any) => void;
+}
+
+export const PersonalInfo = ({ formData, updateFormData }: PersonalInfoProps) => {
   return (
     <div className="space-y-6">
       <h2 className="text-2xl font-semibold mb-4">1. Personal Information</h2>
