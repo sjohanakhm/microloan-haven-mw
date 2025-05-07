@@ -11,11 +11,11 @@
     --card-foreground: 222.2 84% 4.9%;
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
-    --primary: 199 84% 55%;
+    --primary: 199 84% 45%;
     --primary-foreground: 0 0% 100%;
     --secondary: 24 95% 53%;
     --secondary-foreground: 0 0% 100%;
-    --accent: 262 83% 66%;
+    --accent: 262 83% 58%;
     --accent-foreground: 0 0% 100%;
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
@@ -23,12 +23,13 @@
     --destructive-foreground: 210 40% 98%;
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 199 84% 55%;
-    --radius: 0.5rem;
+    --ring: 199 84% 45%;
+    --radius: 0.75rem;
   }
 
   body {
     @apply antialiased;
+    font-size: 16px;
   }
 
   .slide-up {
@@ -42,10 +43,32 @@
   .glass-card {
     @apply bg-white/90 backdrop-blur-sm border border-white/20 shadow-lg;
   }
+  
+  /* Improved form elements */
+  input, textarea, select {
+    @apply text-base;
+  }
+  
+  label {
+    @apply font-medium;
+  }
+  
+  /* Improved button accessibility */
+  button {
+    @apply font-medium;
+  }
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+  
+  .high-contrast-text {
+    @apply text-foreground font-medium;
+  }
+  
+  .accessible-input {
+    @apply border-2 border-input focus:border-primary;
   }
 }

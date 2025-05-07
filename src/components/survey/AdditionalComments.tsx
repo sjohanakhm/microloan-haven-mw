@@ -16,13 +16,13 @@ export const AdditionalComments = ({ formData, updateFormData, onCalculateScore 
       
       <div className="space-y-4">
         <div className="space-y-2">
-          <Label htmlFor="comments">
+          <Label htmlFor="comments" className="text-base font-medium">
             If you have any specific concerns or preferences, please share them here.
           </Label>
           <Textarea
             id="comments"
             placeholder="Enter your comments here..."
-            className="min-h-[150px]"
+            className="min-h-[150px] border-2 focus-visible:ring-primary"
             value={formData.comments || ""}
             onChange={(e) => updateFormData({ comments: e.target.value })}
           />
@@ -32,7 +32,7 @@ export const AdditionalComments = ({ formData, updateFormData, onCalculateScore 
       <div className="pt-6">
         <Button 
           onClick={onCalculateScore}
-          className="w-full"
+          className="w-full bg-secondary hover:bg-secondary/90 text-secondary-foreground font-medium py-6 text-lg shadow-md"
           size="lg"
         >
           Get My Credit Score
