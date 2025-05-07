@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -83,8 +82,7 @@ export const LoanSurvey = () => {
 
   return (
     <Card className="max-w-3xl mx-auto p-6">
-      {!showResults && (
-        <div className="flex justify-between items-center mb-8">
+      <div className="flex justify-between items-center mb-8">
           {Array.from({ length: totalSteps }).map((_, index) => (
             <div
               key={index}
@@ -113,7 +111,6 @@ export const LoanSurvey = () => {
             </div>
           ))}
         </div>
-      )}
 
       {!showResults ? (
         <>
@@ -136,7 +133,8 @@ export const LoanSurvey = () => {
               <CreditScoreResult 
                 score={creditScoreData.score} 
                 category={creditScoreData.category} 
-                factors={creditScoreData.factors} 
+                factors={creditScoreData.factors}
+                formData={formData}
               />
               
               <FinancialAdvice 
