@@ -1,3 +1,4 @@
+
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 
@@ -14,7 +15,10 @@ export const LoanPreferences = ({ formData, updateFormData }: LoanPreferencesPro
       <div className="space-y-6">
         <div className="space-y-2">
           <Label>What repayment period do you prefer?</Label>
-          <RadioGroup defaultValue="less-than-1-year">
+          <RadioGroup 
+            defaultValue={formData.repaymentPeriod || "less-than-1-year"}
+            onValueChange={(value) => updateFormData({ repaymentPeriod: value })}
+          >
             <div className="grid gap-4">
               {[
                 "Less than 1 year",
@@ -40,7 +44,10 @@ export const LoanPreferences = ({ formData, updateFormData }: LoanPreferencesPro
 
         <div className="space-y-2">
           <Label>How would you rate your credit score?</Label>
-          <RadioGroup defaultValue="good">
+          <RadioGroup 
+            defaultValue={formData.creditScore || "good"}
+            onValueChange={(value) => updateFormData({ creditScore: value })}
+          >
             <div className="grid gap-4">
               {[
                 "Poor (Below 580)",
@@ -67,7 +74,10 @@ export const LoanPreferences = ({ formData, updateFormData }: LoanPreferencesPro
 
         <div className="space-y-4">
           <Label>Are you interested in receiving financial advice or loan counseling?</Label>
-          <RadioGroup defaultValue="yes">
+          <RadioGroup 
+            defaultValue={formData.counselingInterest || "yes"}
+            onValueChange={(value) => updateFormData({ counselingInterest: value })}
+          >
             <div className="flex gap-4">
               {["Yes", "No"].map((answer) => (
                 <div key={answer} className="flex items-center space-x-2">

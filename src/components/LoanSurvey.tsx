@@ -7,8 +7,11 @@ import { LoanDetails } from "./survey/LoanDetails";
 import { FinancialInfo } from "./survey/FinancialInfo";
 import { LoanPreferences } from "./survey/LoanPreferences";
 import { AdditionalComments } from "./survey/AdditionalComments";
+import { CreditScoreResult } from "./survey/CreditScoreResult";
+import { FinancialAdvice } from "./survey/FinancialAdvice";
 import { Check } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { calculateCreditScore } from "@/utils/creditScoreCalculator";
 
 interface FormData {
   [key: string]: any;
@@ -17,6 +20,12 @@ interface FormData {
 export const LoanSurvey = () => {
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState<FormData>({});
+  const [showResults, setShowResults] = useState(false);
+  const [creditScoreData, setCreditScoreData] = useState<{
+    score: number;
+    category: string;
+    factors: Record<string, number>;
+  } | null>(null);
   const { toast } = useToast();
   const totalSteps = 5;
 
@@ -29,6 +38,9 @@ export const LoanSurvey = () => {
   const handleBack = () => {
     if (step > 1) {
       setStep(step - 1);
+    } else if (showResults) {
+      setShowResults(false);
+      setStep(totalSteps);
     }
   };
 
@@ -59,55 +71,92 @@ export const LoanSurvey = () => {
     });
   };
 
+  const calculateAndShowScore = () => {
+    const result = calculateCreditScore(formData);
+    setCreditScoreData(result);
+    setShowResults(true);
+  };
+
   const updateFormData = (newData: Partial<FormData>) => {
     setFormData(prev => ({ ...prev, ...newData }));
   };
 
   return (
     <Card className="max-w-3xl mx-auto p-6">
-      <div className="flex justify-between items-center mb-8">
-        {Array.from({ length: totalSteps }).map((_, index) => (
-          <div
-            key={index}
-            className={`flex items-center ${
-              index < totalSteps - 1 ? "flex-1" : ""
-            }`}
-          >
+      {!showResults && (
+        <div className="flex justify-between items-center mb-8">
+          {Array.from({ length: totalSteps }).map((_, index) => (
             <div
-              className={`w-8 h-8 rounded-full flex items-center justify-center ${
-                step > index + 1
-                  ? "bg-primary text-primary-foreground"
-                  : step === index + 1
-                  ? "bg-primary text-primary-foreground"
-                  : "bg-muted text-muted-foreground"
+              key={index}
+              className={`flex items-center ${
+                index < totalSteps - 1 ? "flex-1" : ""
               }`}
             >
-              {step > index + 1 ? <Check size={16} /> : index + 1}
-            </div>
-            {index < totalSteps - 1 && (
               <div
-                className={`h-1 flex-1 mx-2 ${
-                  step > index + 1 ? "bg-primary" : "bg-muted"
+                className={`w-8 h-8 rounded-full flex items-center justify-center ${
+                  step > index + 1
+                    ? "bg-primary text-primary-foreground"
+                    : step === index + 1
+                    ? "bg-primary text-primary-foreground"
+                    : "bg-muted text-muted-foreground"
                 }`}
-              />
-            )}
-          </div>
-        ))}
-      </div>
+              >
+                {step > index + 1 ? <Check size={16} /> : index + 1}
+              </div>
+              {index < totalSteps - 1 && (
+                <div
+                  className={`h-1 flex-1 mx-2 ${
+                    step > index + 1 ? "bg-primary" : "bg-muted"
+                  }`}
+                />
+              )}
+            </div>
+          ))}
+        </div>
+      )}
 
-      {step === 1 && <PersonalInfo formData={formData} updateFormData={updateFormData} />}
-      {step === 2 && <LoanDetails formData={formData} updateFormData={updateFormData} />}
-      {step === 3 && <FinancialInfo formData={formData} updateFormData={updateFormData} />}
-      {step === 4 && <LoanPreferences formData={formData} updateFormData={updateFormData} />}
-      {step === 5 && <AdditionalComments formData={formData} updateFormData={updateFormData} />}
+      {!showResults ? (
+        <>
+          {step === 1 && <PersonalInfo formData={formData} updateFormData={updateFormData} />}
+          {step === 2 && <LoanDetails formData={formData} updateFormData={updateFormData} />}
+          {step === 3 && <FinancialInfo formData={formData} updateFormData={updateFormData} />}
+          {step === 4 && <LoanPreferences formData={formData} updateFormData={updateFormData} />}
+          {step === 5 && (
+            <AdditionalComments 
+              formData={formData} 
+              updateFormData={updateFormData}
+              onCalculateScore={calculateAndShowScore} 
+            />
+          )}
+        </>
+      ) : (
+        <div className="space-y-8">
+          {creditScoreData && (
+            <>
+              <CreditScoreResult 
+                score={creditScoreData.score} 
+                category={creditScoreData.category} 
+                factors={creditScoreData.factors} 
+              />
+              
+              <FinancialAdvice 
+                loanType={formData.loanType || "personal-loan"} 
+              />
+            </>
+          )}
+        </div>
+      )}
 
       <div className="flex justify-between mt-8">
-        <Button variant="outline" onClick={handleBack} disabled={step === 1}>
-          Back
+        <Button variant="outline" onClick={handleBack}>
+          {showResults ? "Back to Survey" : "Back"}
         </Button>
-        <Button onClick={step === totalSteps ? handleSubmit : handleNext}>
-          {step === totalSteps ? "Submit Application" : "Next"}
-        </Button>
+        
+        {!showResults && (
+          <Button onClick={step === totalSteps ? handleSubmit : handleNext}>
+            {step === totalSteps ? "Submit Application" : "Next"}
+          </Button>
+        )}
       </div>
     </Card>
   );

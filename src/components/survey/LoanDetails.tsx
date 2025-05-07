@@ -1,3 +1,4 @@
+
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
@@ -15,7 +16,10 @@ export const LoanDetails = ({ formData, updateFormData }: LoanDetailsProps) => {
       <div className="space-y-4">
         <div className="space-y-2">
           <Label>What type of loan are you applying for?</Label>
-          <RadioGroup defaultValue="personal">
+          <RadioGroup 
+            defaultValue={formData.loanType || "personal-loan"}
+            onValueChange={(value) => updateFormData({ loanType: value })}
+          >
             <div className="grid grid-cols-2 gap-4">
               {[
                 "Personal Loan",
@@ -41,7 +45,10 @@ export const LoanDetails = ({ formData, updateFormData }: LoanDetailsProps) => {
 
         <div className="space-y-2">
           <Label>What loan amount are you requesting?</Label>
-          <RadioGroup defaultValue="less-than-5000">
+          <RadioGroup 
+            defaultValue={formData.loanAmount || "less-than-5000"}
+            onValueChange={(value) => updateFormData({ loanAmount: value })}
+          >
             <div className="grid gap-4">
               {[
                 "Less than $5,000",

@@ -1,3 +1,4 @@
+
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
@@ -15,12 +16,20 @@ export const PersonalInfo = ({ formData, updateFormData }: PersonalInfoProps) =>
       <div className="space-y-4">
         <div className="space-y-2">
           <Label htmlFor="fullName">Full Name</Label>
-          <Input id="fullName" placeholder="Enter your full name" />
+          <Input 
+            id="fullName" 
+            placeholder="Enter your full name" 
+            value={formData.fullName || ""}
+            onChange={(e) => updateFormData({ fullName: e.target.value })}
+          />
         </div>
 
         <div className="space-y-2">
           <Label>Age</Label>
-          <RadioGroup defaultValue="18-25">
+          <RadioGroup 
+            defaultValue={formData.age || "18-25"}
+            onValueChange={(value) => updateFormData({ age: value })}
+          >
             <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
               {["18-25", "26-35", "36-45", "46-55", "56+"].map((age) => (
                 <div key={age} className="flex items-center space-x-2">
@@ -34,7 +43,10 @@ export const PersonalInfo = ({ formData, updateFormData }: PersonalInfoProps) =>
 
         <div className="space-y-2">
           <Label>Employment Status</Label>
-          <RadioGroup defaultValue="employed">
+          <RadioGroup 
+            defaultValue={formData.employmentStatus || "employed"}
+            onValueChange={(value) => updateFormData({ employmentStatus: value })}
+          >
             <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
               {[
                 "Employed",

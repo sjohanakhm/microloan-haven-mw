@@ -1,3 +1,4 @@
+
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 
@@ -14,7 +15,10 @@ export const FinancialInfo = ({ formData, updateFormData }: FinancialInfoProps) 
       <div className="space-y-6">
         <div className="space-y-2">
           <Label>What is your estimated monthly income?</Label>
-          <RadioGroup defaultValue="less-than-2000">
+          <RadioGroup 
+            defaultValue={formData.incomeLevel || "less-than-2000"}
+            onValueChange={(value) => updateFormData({ incomeLevel: value })}
+          >
             <div className="grid gap-4">
               {[
                 "Less than $2,000",
@@ -43,7 +47,10 @@ export const FinancialInfo = ({ formData, updateFormData }: FinancialInfoProps) 
 
         <div className="space-y-4">
           <Label>Do you have any existing loans?</Label>
-          <RadioGroup defaultValue="no">
+          <RadioGroup 
+            defaultValue={formData.existingLoans || "no"}
+            onValueChange={(value) => updateFormData({ existingLoans: value })}
+          >
             <div className="flex gap-4">
               {["Yes", "No"].map((answer) => (
                 <div key={answer} className="flex items-center space-x-2">
@@ -62,7 +69,10 @@ export const FinancialInfo = ({ formData, updateFormData }: FinancialInfoProps) 
 
         <div className="space-y-2">
           <Label>If yes, what is your total outstanding loan amount?</Label>
-          <RadioGroup defaultValue="less-than-10000">
+          <RadioGroup 
+            defaultValue={formData.outstandingLoanAmount || "less-than-10000"}
+            onValueChange={(value) => updateFormData({ outstandingLoanAmount: value })}
+          >
             <div className="grid gap-4">
               {[
                 "Less than $10,000",
