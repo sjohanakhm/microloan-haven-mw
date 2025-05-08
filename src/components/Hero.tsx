@@ -23,18 +23,18 @@ export const Hero = () => {
           <HandCoins size={20} />
           <span className="text-sm font-medium">Empowering Malawi's Future</span>
         </div>
-        <h1 className="mb-6 text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl text-[#F8FAFC]">
+        <h1 className="mb-6 text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl text-[#222222]">
           Financial Freedom Through
           <span className="text-primary"> Community Lending</span>
         </h1>
-        <p className="max-w-2xl mx-auto mb-8 text-lg text-[#F1F5F9]">
+        <p className="max-w-2xl mx-auto mb-8 text-lg text-[#333333]">
           CFL provides accessible microcredit solutions to empower entrepreneurs and small businesses across Malawi, helping communities thrive and grow together.
         </p>
         <div className="flex flex-wrap justify-center gap-4">
-          <Button size="lg" className="slide-up backdrop-blur-sm" asChild>
+          <Button size="lg" className="slide-up backdrop-blur-sm text-[#222222]" asChild>
             <Link to="/loan-application">Apply for a Loan</Link>
           </Button>
-          <Button size="lg" variant="outline" className="slide-up backdrop-blur-sm bg-white/10 text-[#F1F5F9] hover:text-[#F1F5F9] border-white/30" asChild>
+          <Button size="lg" variant="outline" className="slide-up backdrop-blur-sm bg-white/80 text-[#333333] hover:text-[#222222] border-white/30" asChild>
             <Link to="/about">Learn More</Link>
           </Button>
         </div>
