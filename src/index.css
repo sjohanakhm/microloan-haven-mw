@@ -16,7 +16,7 @@
     --secondary: 255 91% 85%; /* #C4B5FD */
     --secondary-foreground: 215 28% 17%;
     --accent: 254 60% 75%; /* #A78BFA */
-    --accent-foreground: 0 0% 100%;
+    --accent-foreground: 215 28% 17%; /* Changed to darker text for better readability */
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
     --destructive: 0 84.2% 60.2%;
@@ -64,11 +64,11 @@
 
   /* Timeline elements & category tags */
   .timeline-element, .category-tag {
-    @apply bg-[#818CF8] text-white px-3 py-1 rounded-full text-sm font-medium;
+    @apply bg-[#818CF8] text-foreground px-3 py-1 rounded-full text-sm font-medium;
   }
 
   .category-tag-alt {
-    @apply bg-[#A78BFA] text-white px-3 py-1 rounded-full text-sm font-medium;
+    @apply bg-[#A78BFA] text-foreground px-3 py-1 rounded-full text-sm font-medium;
   }
 }
 

@@ -52,7 +52,7 @@ export const CreditScoreResult = ({ score, category, factors, formData = {} }: C
           <div className={`flex items-center justify-center w-32 h-32 rounded-full ${getScoreBackgroundColor()} mb-4`}>
             <span className={`text-4xl font-bold ${getScoreColor()}`}>{score}</span>
           </div>
-          <div className="text-xl font-medium">
+          <div className="text-xl font-medium text-foreground">
             {category}
           </div>
         </div>
@@ -62,7 +62,7 @@ export const CreditScoreResult = ({ score, category, factors, formData = {} }: C
           <div className="space-y-2">
             {Object.entries(factors).map(([factor, value], index) => (
               <div key={index} className="flex justify-between items-center p-2 rounded-md bg-muted/30">
-                <span>{factor}</span>
+                <span className="text-foreground">{factor}</span>
                 <span className={typeof value === 'number' && value > 0 ? "text-green-600 font-semibold" : "text-red-600 font-semibold"}>
                   {typeof value === 'number' && value > 0 ? `+${value}` : value}
                 </span>

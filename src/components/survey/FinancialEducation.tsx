@@ -11,12 +11,12 @@ export const FinancialEducation = ({ loanType = "loan" }: FinancialEducationProp
     <div className="space-y-6">
       <div className="flex items-center gap-2">
         <Lightbulb className="h-5 w-5 text-primary" />
-        <h3 className="text-xl font-semibold">Financial Education</h3>
+        <h3 className="text-xl font-semibold text-foreground">Financial Education</h3>
       </div>
       
       <Card className="card-purple">
         <CardHeader className="pb-2">
-          <CardTitle className="text-lg flex items-center gap-2">
+          <CardTitle className="text-lg flex items-center gap-2 text-foreground">
             <span className="bg-accent/20 text-accent p-1 rounded-full">
               <Lightbulb className="h-4 w-4" />
             </span>
@@ -34,7 +34,7 @@ export const FinancialEducation = ({ loanType = "loan" }: FinancialEducationProp
 
       <Card className="card-purple">
         <CardHeader className="pb-2">
-          <CardTitle className="text-lg flex items-center gap-2">
+          <CardTitle className="text-lg flex items-center gap-2 text-foreground">
             <span className="bg-accent/20 text-accent p-1 rounded-full">
               <Lightbulb className="h-4 w-4" />
             </span>

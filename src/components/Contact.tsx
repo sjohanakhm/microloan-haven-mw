@@ -18,24 +18,24 @@ export const Contact = () => {
             <div className="space-y-6">
               <div className="flex items-center gap-4">
                 <Mail className="text-primary" />
-                <span>ahmed@consolfinance.com</span>
+                <span className="text-foreground">ahmed@consolfinance.com</span>
               </div>
               <div className="flex items-center gap-4">
                 <Mail className="text-primary" />
-                <span>krystal@consolfinance.com</span>
+                <span className="text-foreground">krystal@consolfinance.com</span>
               </div>
             </div>
           </div>
           <Card className="p-6 glass-card">
             <form className="space-y-6">
               <div>
-                <Input placeholder="Your Name" />
+                <Input placeholder="Your Name" className="text-foreground" />
               </div>
               <div>
-                <Input type="email" placeholder="Email Address" />
+                <Input type="email" placeholder="Email Address" className="text-foreground" />
               </div>
               <div>
-                <Textarea placeholder="Your Message" className="min-h-[120px]" />
+                <Textarea placeholder="Your Message" className="min-h-[120px] text-foreground" />
               </div>
               <Button className="w-full">Send Message</Button>
             </form>
