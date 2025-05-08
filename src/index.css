@@ -5,17 +5,17 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --background: 210 20% 98%; /* #F8FAFC */
+    --foreground: 215 28% 17%; /* #1F2937 */
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 215 28% 17%;
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-    --primary: 199 84% 45%;
+    --popover-foreground: 215 28% 17%;
+    --primary: 217 91% 60%; /* #3B82F6 */
     --primary-foreground: 0 0% 100%;
-    --secondary: 24 95% 53%;
-    --secondary-foreground: 0 0% 100%;
-    --accent: 262 83% 58%;
+    --secondary: 255 91% 85%; /* #C4B5FD */
+    --secondary-foreground: 215 28% 17%;
+    --accent: 254 60% 75%; /* #A78BFA */
     --accent-foreground: 0 0% 100%;
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
@@ -23,12 +23,16 @@
     --destructive-foreground: 210 40% 98%;
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 199 84% 45%;
+    --ring: 217 91% 60%;
     --radius: 0.75rem;
   }
 
+  h1, h2, h3, h4, h5, h6 {
+    @apply text-[#111827] font-bold;
+  }
+
   body {
-    @apply antialiased;
+    @apply antialiased bg-background text-foreground;
     font-size: 16px;
   }
 
@@ -55,7 +59,16 @@
   
   /* Improved button accessibility */
   button {
-    @apply font-medium;
+    @apply font-medium rounded-md;
+  }
+
+  /* Timeline elements & category tags */
+  .timeline-element, .category-tag {
+    @apply bg-[#818CF8] text-white px-3 py-1 rounded-full text-sm font-medium;
+  }
+
+  .category-tag-alt {
+    @apply bg-[#A78BFA] text-white px-3 py-1 rounded-full text-sm font-medium;
   }
 }
 
@@ -70,5 +83,9 @@
   
   .accessible-input {
     @apply border-2 border-input focus:border-primary;
+  }
+
+  .card-purple {
+    @apply bg-secondary/30 border border-secondary/50;
   }
 }
