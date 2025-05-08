@@ -1,7 +1,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { GraduationCap, Lightbulb, Plant } from "lucide-react";
+import { GraduationCap, Lightbulb } from "lucide-react";
 import { Link } from "react-router-dom";
 
 export const FinancialLiteracy = () => {
@@ -15,7 +15,7 @@ export const FinancialLiteracy = () => {
           </p>
         </div>
         
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-8 md:grid-cols-2">
           <Card className="glass-card slide-up">
             <CardHeader className="pb-4">
               <div className="w-12 h-12 flex items-center justify-center rounded-full bg-primary/20 text-primary mb-4">
@@ -50,25 +50,6 @@ export const FinancialLiteracy = () => {
             <CardFooter>
               <Button variant="outline" asChild className="w-full text-foreground">
                 <Link to="/financial-literacy/borrow-wisely">Read More</Link>
-              </Button>
-            </CardFooter>
-          </Card>
-
-          <Card className="glass-card slide-up">
-            <CardHeader className="pb-4">
-              <div className="w-12 h-12 flex items-center justify-center rounded-full bg-primary/20 text-primary mb-4">
-                <Plant size={24} />
-              </div>
-              <CardTitle>More Lessons Coming Soon</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-foreground">
-                We're growing our library of financial lessons to help you build knowledge and skills.
-              </p>
-            </CardContent>
-            <CardFooter>
-              <Button variant="outline" disabled className="w-full text-foreground">
-                Stay Tuned
               </Button>
             </CardFooter>
           </Card>
